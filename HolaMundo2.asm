@@ -1,5 +1,5 @@
 section .data
-    hello db 'Hola, Mundo Alex!',0  ; Definir una cadena de caracteres 'Hola, Mundo!' con un byte nulo al final
+    hello db 'Hola, Mundo Arquitectura C!',0  ; Definir una cadena de caracteres 'Hola, Mundo!' con un byte nulo al final
 
 section .text
 global _start
@@ -9,7 +9,7 @@ _start:
     mov rax, 1            ; Código de la syscall para sys_write (1)
     mov rdi, 1            ; Descriptor de archivo para la salida estándar (1)
     mov rsi, hello        ; Dirección de la cadena a imprimir
-    mov rdx, 17           ; Longitud de la cadena (número de bytes)
+    mov rdx, 28           ; Longitud de la cadena (número de bytes)
     syscall              ; Llamar al kernel
 
     ; Salir del programa
