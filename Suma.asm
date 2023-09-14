@@ -1,7 +1,7 @@
 section .data
-    ; Define los números que deseas restar
-    num1 dq 4
-    num2 dq 2
+    ; Define los números que deseas sumar
+    num1 dq 50
+    num2 dq 20
     resultado db "El resultado es: ", 0
 
 section .text
@@ -11,8 +11,8 @@ _start:
     ; Cargar num1 en RAX
     mov rax, [num1]
 
-    ; Restar num2 de RAX
-    sub rax, [num2]
+    ; Sumar num2 a RAX
+    add rax, [num2]
 
     ; Convertir el resultado a una cadena
     mov rdi, rax

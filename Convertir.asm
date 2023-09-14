@@ -1,29 +1,24 @@
 section .data
-    ; Define los números que deseas restar
-    num1 dq 4
-    num2 dq 2
-    resultado db "El resultado es: ", 0
+    resultado times 20 db ' '   ; Espacio para almacenar la cadena de resultado
+    numero dq 12345            ; Número que deseamos convertir
 
 section .text
 global _start
 
 _start:
-    ; Cargar num1 en RAX
-    mov rax, [num1]
+    ; Cargar el número en RAX
+    mov rax, [numero]
 
-    ; Restar num2 de RAX
-    sub rax, [num2]
-
-    ; Convertir el resultado a una cadena
-    mov rdi, rax
-    mov rsi, resultado
+    ; Llamar a la función para convertir el número a cadena
+    mov rdi, rax               ; Pasar el número en RDI
+    mov rsi, resultado         ; Pasar el puntero a la cadena de resultado en RSI
     call int_to_str
 
-    ; Llamar a la función de escritura para mostrar el resultado
+    ; Llamar a la función de escritura para mostrar la cadena resultante
     mov rax, 1                  ; Código de la syscall para escribir (1)
     mov rdi, 1                  ; Descriptor de archivo estándar de salida (1)
     lea rsi, [resultado]        ; Dirección de la cadena resultante
-    mov rdx, 64                 ; Longitud máxima de la cadena (ajusta según sea necesario)
+    mov rdx, 20                 ; Longitud máxima de la cadena (ajusta según sea necesario)
     syscall                     ; Llamar a la syscall para imprimir el resultado
 
     ; Salir del programa
@@ -43,7 +38,7 @@ int_to_str:
 
     mov rcx, 10                 ; Inicializar el contador (número de dígitos)
     mov rbx, 10                 ; Divisor para obtener dígitos (base 10)
-    add rsi, 63                 ; Apuntar al último carácter de la cadena (64 - 1)
+    add rsi, 19                 ; Apuntar al último carácter de la cadena (20 - 1)
     mov byte [rsi], 0           ; Terminar la cadena con un carácter nulo
 
 convert_loop:
